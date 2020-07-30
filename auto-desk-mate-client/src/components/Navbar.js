@@ -14,6 +14,12 @@ function Navbar(){
                 exact
                 style={link}
             >About</NavLink>
+
+            <Navbar
+                to="/login"
+                exact
+                style={link}
+            >Login</Navbar>
         </div>
     )
 
