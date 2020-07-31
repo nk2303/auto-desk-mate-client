@@ -7,6 +7,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Navbar from './components/Navbar';
 import FourOhFour from './components/FourOhFour'; 
 import Login from './components/Login';
+import Landing from './components/Landing'
 
 function App() {
   return (
@@ -17,10 +18,17 @@ function App() {
             </header>
 
             <Switch>
+
               <Route 
-                exact 
+                exact
                 path="/Login" 
                 component={Login}
+              />
+
+              <Route 
+                exact 
+                path="/"
+                component={Landing}
               />
 
               <Route 

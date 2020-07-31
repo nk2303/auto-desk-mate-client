@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 function Navbar(){
     const link = {
-        color: "white",
+        color: "black",
         paddingTop: "25px", 
         cursor: "pointer"
     }
