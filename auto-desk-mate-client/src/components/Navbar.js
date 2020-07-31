@@ -1,8 +1,5 @@
 import React from 'react'; 
 import { NavLink } from 'react-router-dom';
-import { connect } from "react-redux";
-
-
 
 
 function Navbar(){
@@ -20,11 +17,11 @@ function Navbar(){
                 style={link}
             >About</NavLink>
 
-            <Navbar
+            <NavLink
                 to="/login"
                 exact
                 style={link}
-            >Login</Navbar>
+            >Login</NavLink>
         </div>
     )
 
