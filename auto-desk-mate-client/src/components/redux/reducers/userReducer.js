@@ -1,77 +1,26 @@
-const BACKEND_DOMAIN =  "https://localhost3000/api/v1";
+const USER_STORAGE_KEY = "user";
+const INITIAL_STATE = JSON.parse(localStorage.getItem(USER_STORAGE_KEY)) || { user: null, error: null };
 
-const headers = () => {
-    return {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-    }
+export const userReducer = (state = INITIAL_STATE, action) => {
+    switch (action.type) {
+        case "LOGIN":
+            localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(action.payload));
+            localStorage.setItem("token", action.payload.jwt);
+            return { user: action.payload, error: null };
+        case "LOGOUT":
+            localStorage.removeItem("token");
+            localStorage.removeItem(USER_STORAGE_KEY);
+            return { user: null, error: null };
+        case "LOGIN_ERROR":
+            return { user: null, error: action.error}
+        case "SIGNUP":
+            localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(action.payload));
+            localStorage.setItem("token", action.payload.jwt);
+            return { user: action.payload, error: null };
+        
+        default:
+            return state;
+    };
 }
 
-const loginSignup = (apiUrl, username, password, name) => {
-    const user = {
-        user: {
-            username,
-            password, 
-            name
-        }
-    }
-    return fetch(apiUrl, {
-        method: "POST",
-        headers: headers(),
-        body: JSON.stringify(user)
-    }).then(res =>  res.json())
-    .then(res => {
-        if (res.error) {
-            return {
-                type: "LOGIN_ERROR",
-                error: res.error
-            };
-        }
-        return {
-            type: "LOGIN",
-            payload: res
-        }
-    });
-}
-
-export const login = (username, password, name) => {
-    return loginSignup(`${BACKEND_DOMAIN}/login`, username, password, name);
-}
-
-export const signup = (username, password) => {
-
-    const user = {
-        user: {
-            username,
-            password, 
-            name
-        }
-    }
-    return fetch(`${BACKEND_DOMAIN}/users`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-        },
-        body: JSON.stringify(user)
-    }).then(res => res.json())
-    .then(res => {
-        if (res.error) {
-            return {
-                type: "SIGNUP_ERROR",
-                error: res.error
-            };
-        }
-        return {
-            type: "SIGNUP",
-            payload: res
-        }
-    }); 
-
-}
-
-export const logout = () => {
-    return {
-        type: "LOGOUT"
-    }
-}
+export default userReducer;
