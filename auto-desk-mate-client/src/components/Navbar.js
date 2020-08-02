@@ -15,7 +15,7 @@ function Navbar(){
                 to="/"
                 exact
                 style={link}
-            >About</NavLink>
+            >Auto Desk Mate</NavLink>
 
             <NavLink
                 to="/login"
