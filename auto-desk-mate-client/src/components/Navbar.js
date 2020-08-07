@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 
-function Navbar(){
+const Navbar = () => {
     const link = {
         color: "black",
         paddingTop: "25px", 
@@ -22,6 +22,7 @@ function Navbar(){
                 exact
                 style={link}
             >Login</NavLink>
+            
         </div>
     )
 
