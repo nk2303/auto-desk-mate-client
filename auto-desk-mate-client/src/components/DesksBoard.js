@@ -6,7 +6,8 @@ const DesksBoard = () => {
 
     return(
         <Col md={3}>
-            <div>what</div>
+            <div>Desk board</div>
+            <div className="deskboard"></div>
         </Col>
     )
 }
