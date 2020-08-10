@@ -13,12 +13,12 @@ import UserInputForm from './UserInputForm.js'
 const Landing = () =>{
 
     return(
-        <Container>
+        <Container className="intro-text">
             <Row>
-                Welcome to Auto Desk Mate, a desk organizing application! 
+                <Col>Welcome to Auto Desk Mate, a desk organizing application!</Col>
             </Row>
             <Row>
-                <Col xs={3} md={3}> <UserInputForm /></Col>
+                <Col xs={2} md={2}> <UserInputForm /></Col>
                 <InteractiveArea/>
             </Row>
         </Container>

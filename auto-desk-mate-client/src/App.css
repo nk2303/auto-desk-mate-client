@@ -26,8 +26,13 @@
     padding-top: 0;
 }
 
+.intro-text {
+  text-align: center !important;         
+}
 
-
+.container {
+  margin: 30px !important;
+}
 
 
 footer {

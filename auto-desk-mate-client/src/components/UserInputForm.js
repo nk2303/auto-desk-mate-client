@@ -16,15 +16,17 @@ const UserInputForm = () =>{
                 <br />
                 <Form.Control type="number" placeholder="Enter Number" />
                 </Form.Group>
-  
+
                 <Form.Group controlId="userInputFormWidth">
-                <Form.Label>Width in Feet</Form.Label>
-                <br />
-                <Form.Control type="number" placeholder="Width in Feet" />
-                <br />
                 <Form.Text className="text-muted">
                     Please round up to the nearest whole number.
                 </Form.Text>
+                <br />
+                <Form.Label>Width in Feet</Form.Label>
+                <br />
+                <Form.Control type="number" placeholder="Width in Feet" />
+                
+               
                 </Form.Group>
 
                 <Form.Group controlId="userInputFormHeight">
@@ -32,9 +34,6 @@ const UserInputForm = () =>{
                 <br />
                 <Form.Control type="number" placeholder="Height in Feet" />
                 <br />
-                <Form.Text className="text-muted">
-                    Please round up to the nearest whole number.
-                </Form.Text>
                 </Form.Group>
                 <input type="submit"></input>
             </Form>
