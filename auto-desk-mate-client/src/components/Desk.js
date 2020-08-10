@@ -1,12 +1,10 @@
 import React from "react";
+import './InteractiveArea.css';
 
-
-function Desk(){
-
-
+const Desk = () => {
     return(
         <div className = "desk">
-            
+            DESK
         </div>
     )
 }

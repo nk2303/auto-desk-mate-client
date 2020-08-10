@@ -1,23 +1,29 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Col from 'react-bootstrap/Col';
 import './InteractiveArea.css';
 import { connect } from 'react-redux';
 import Desk from './Desk';
 
 const DesksBoard = ({roomInfo}) => {
-    console.log(roomInfo.total_desks)
-    const [totalDesks, setTotalDesks] = useState(parseInt(roomInfo.total_desks));
+    
+    const [deskList, setdeskList] = useState([]);
+
+    useEffect(() =>{
+        renderDesks(parseInt(roomInfo.total_desks))
+    }, [roomInfo]);
 
     const renderDesks = (desks) => {
-        for ( let i = 0; i <= desks; i++) {
-            // <Desk/>;
+        const list = [];
+        for ( let i = 0; i < desks; i++) {
+            list.push({size: i});
         }
+        setdeskList(list)
     }
     return(
         <Col md={3}>
             <div>Desk board</div>
             <div className="deskboard">
-                {/* { renderDesks(parseInt(roomInfo.total_desks)) } */}
+                {deskList.map( desk => <Desk key={desk.size}/>)}
             </div>
         </Col>
     )

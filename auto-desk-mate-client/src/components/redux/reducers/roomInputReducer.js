@@ -1,4 +1,4 @@
-const ROOM_INITIAL_STATE = {total_desks: null, room_width: null, room_height: null}
+const ROOM_INITIAL_STATE = {total_desks: "0", room_width: "0", room_height: "0"}
 
 export const roomInfoReducer = (state = ROOM_INITIAL_STATE, action) => {
     switch (action.type) {
