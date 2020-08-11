@@ -6,7 +6,8 @@ const GridBoard = () => {
 
     return(
         <Col md={9}>
-            <div>Why</div>
+            <div>Grid board</div>
+            <div className="grid-board"></div>
         </Col>
     )
 }
