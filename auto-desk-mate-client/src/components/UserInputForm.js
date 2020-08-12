@@ -13,6 +13,9 @@ const UserInputForm = ({getRoomInput}) =>{
     const handleSubmit = e => {
         e.preventDefault();
         e.stopPropagation();
+        //convert the number of desks into an array
+        //array of objects {id, student_name :null, x-coordidate null, y-coordiate: null}
+        //call 2 functions, one is for the desk array, the other is for width and height
         getRoomInput(desks, width, height);
 
     }
