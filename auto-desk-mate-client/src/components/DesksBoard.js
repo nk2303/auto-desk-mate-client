@@ -14,8 +14,8 @@ const DesksBoard = ({roomInfo}) => {
 
     const renderDesks = (desks) => {
         const list = [];
-        for ( let i = 0; i < desks; i++) {
-            list.push({size: i});
+        for ( let i = 1; i <= desks; i++) {
+            list.push({id: i});
         }
         setdeskList(list)
     }
@@ -26,7 +26,7 @@ const DesksBoard = ({roomInfo}) => {
         <Col md={3}>
             <div>Desk board</div>
             <div className="deskboard" style={{overflow: 'scroll'}}>
-                {deskList.map( desk => <Desk key={desk.size}/>)}
+                {deskList.map( desk => <Desk key={desk.id} id={desk.id} />)}
             </div>
         </Col>
     )

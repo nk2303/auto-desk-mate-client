@@ -1,12 +1,27 @@
 import React from "react";
 import './InteractiveArea.css';
+import { connect } from 'react-redux';
+import { startDeskDrag } from './redux/actions/dragNdropAction';
 
-const Desk = () => {
+const Desk = ({id, startDeskDrag}) => {
+
+    const onStartDeskDrag = () => {
+        console.log(id);
+        startDeskDrag(id);
+    }
     return(
-        <div className = "desk">
+        <div 
+            draggable 
+            className = "desk" 
+            onDragStart={onStartDeskDrag}>
             DESK
         </div>
     )
 }
 
-export default Desk
+const mapDispatchToProps = (dispatch) => {
+    return {
+        startDeskDrag: (desk_id => startDeskDrag(desk_id, dispatch)),
+    }
+}
+export default connect(null, mapDispatchToProps)(Desk)
