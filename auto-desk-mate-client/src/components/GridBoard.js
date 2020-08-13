@@ -20,9 +20,11 @@ const GridBoard = ({roomInfo, droppedDesk}) => {
         setRoomHeight(targetRef.current.offsetWidth*ratio)
     }
 
-    const onDeskDrop = () => {
+    const onDeskDrop = (e) => {
         // if(deskList.length){
             setDropped(true)  
+            console.log(e.screenX)
+            console.log(e.screenY)
         // }
         
     }
@@ -40,7 +42,7 @@ const GridBoard = ({roomInfo, droppedDesk}) => {
                 className="grid-board" 
                 onDragOver={e => e.preventDefault()}
                 onDrop={onDeskDrop}>
-                    {dropped ? <Desk key={droppedDesk.id} id={droppedDesk.id} /> : null}
+                    {dropped ? <Desk key={droppedDesk.id} id={droppedDesk.id}  /> : null}
             </div>
         </Col>
     )

@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import Form from 'react-bootstrap/Form';
-import {getRoomInput} from './redux/actions/roomInputAction';
+import {getRoomInput, getDeskInput} from './redux/actions/roomInputAction';
 import { connect } from 'react-redux';
 
 
-const UserInputForm = ({getRoomInput}) =>{
+const UserInputForm = ({getRoomInput, getDeskInput}) =>{
 
     const [desks, setDesks] = useState('');
     const [width, setWidth] = useState(300);
@@ -16,7 +16,8 @@ const UserInputForm = ({getRoomInput}) =>{
         //convert the number of desks into an array
         //array of objects {id, student_name :null, x-coordidate null, y-coordiate: null}
         //call 2 functions, one is for the desk array, the other is for width and height
-        getRoomInput(desks, width, height);
+        getRoomInput(width, height);
+        getDeskInput(desks)
 
     }
     const handleDesksChange = e => { setDesks(e.target.value) };
@@ -77,7 +78,8 @@ const UserInputForm = ({getRoomInput}) =>{
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getRoomInput: (total_desks, room_width, room_height) => getRoomInput(total_desks, room_width, room_height, dispatch)
+        getRoomInput: (room_width, room_height) => getRoomInput(room_width, room_height, dispatch),
+        getDeskInput: (total_desks) => getDeskInput(total_desks, dispatch)
     }
 }
 
