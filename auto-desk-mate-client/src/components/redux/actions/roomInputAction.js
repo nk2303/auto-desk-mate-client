@@ -9,6 +9,7 @@ export const getRoomInput = (room_width, room_height, dispatch) => {
 export const getDeskInput = (total_desks, dispatch) => {
     dispatch ({
         type: "GET_DESK_INPUT",
-        payload: [total_desks]
+        payload: parseInt(total_desks) 
+        //turn the string into an arrray
     })
 }

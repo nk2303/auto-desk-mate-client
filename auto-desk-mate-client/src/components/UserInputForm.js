@@ -9,6 +9,8 @@ const UserInputForm = ({getRoomInput, getDeskInput}) =>{
     const [desks, setDesks] = useState('');
     const [width, setWidth] = useState(300);
     const [height, setHeight] = useState(200);
+    
+
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -30,11 +32,14 @@ const UserInputForm = ({getRoomInput, getDeskInput}) =>{
                 <Form.Group controlId="userInputFormDesk">
                 <Form.Label>Number of Desks</Form.Label>
                 <br />
+          
                 <Form.Control 
                     type="number" 
                     placeholder="Enter number of desks" 
                     onChange={handleDesksChange}
                     value={desks}
+                    min='1'
+                    step='1'
                     />
                 </Form.Group>
 
@@ -48,6 +53,8 @@ const UserInputForm = ({getRoomInput, getDeskInput}) =>{
                     placeholder="Width in Feet" 
                     onChange={handleWidthChange}
                     value={width}
+                    min="1"
+                    step="1"
                     />
                 <Form.Text className="text-muted">
                     Please round up to the nearest whole number.
@@ -64,6 +71,8 @@ const UserInputForm = ({getRoomInput, getDeskInput}) =>{
                     placeholder="Height in Feet" 
                     onChange={handleHeightChange}
                     value={height}
+                    min='1'
+                    step='1'
                     />
                 <Form.Text className="text-muted">
                     Please round up to the nearest whole number.
