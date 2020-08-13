@@ -7,11 +7,11 @@ import Desk from './Desk';
 
 const DesksBoard = ({deskInfo}) => {
     
-    const [deskList, setdeskList] = useState([]);
+    // const [deskList, setdeskList] = useState([]);
 
-    useEffect(() =>{
-        renderDesks(parseInt(deskInfo.total_desks))
-    }, [deskInfo]);
+    // useEffect(() =>{
+    //     renderDesks(parseInt(deskInfo.total_desks))
+    // }, [deskInfo]);
 
     // const renderDesks = (desks) => {
     //     const list = [];
@@ -21,17 +21,13 @@ const DesksBoard = ({deskInfo}) => {
     //     setdeskList(list)
     // }
 
-    const renderDesks = (desks) => {
-        
-    }
-
 
     return(
        
         <Col md={3}>
             <div>Desk board</div>
             <div className="deskboard" style={{overflow: 'scroll'}}>
-                {deskList.map( desk => <Desk key={desk.id} id={desk.id} />)}
+                {deskInfo.map( desk => <Desk key={desk.id} id={desk.id} />)}
             </div>
         </Col>
     )
