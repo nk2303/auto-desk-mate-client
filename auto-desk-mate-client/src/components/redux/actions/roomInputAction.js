@@ -21,7 +21,6 @@ export const getDeskInput = (total_desks, dispatch) => {
             all_desks.push(ob)
            
         }
-       
         return all_desks
     }
     

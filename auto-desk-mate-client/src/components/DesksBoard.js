@@ -27,7 +27,7 @@ const DesksBoard = ({deskInfo}) => {
         <Col md={3}>
             <div>Desk board</div>
             <div className="deskboard" style={{overflow: 'scroll'}}>
-                {deskInfo.map( desk => <Desk key={desk.id} id={desk.id} />)}
+                {deskInfo.map( desk => <Desk key={desk.id} deskInfo={desk} />)}
             </div>
         </Col>
     )

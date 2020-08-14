@@ -3,11 +3,11 @@ import './InteractiveArea.css';
 import { connect } from 'react-redux';
 import { startDeskDrag } from './redux/actions/dragNdropAction';
 
-const Desk = ({id, startDeskDrag}) => {
+const Desk = ({deskInfo, startDeskDrag}) => {
 
     const onStartDeskDrag = () => {
-        console.log(id);
-        startDeskDrag(id);
+        console.log(deskInfo);
+        startDeskDrag(deskInfo);
     }
     return(
         <div 

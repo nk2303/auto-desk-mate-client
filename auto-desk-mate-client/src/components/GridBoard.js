@@ -3,17 +3,16 @@ import { connect } from 'react-redux';
 import Col from 'react-bootstrap/Col';
 import './InteractiveArea.css';
 import Desk from './Desk';
+import {dropDesk} from './redux/actions/dragNdropAction';
 
-
-const GridBoard = ({roomInfo, droppedDesk}) => {
+const GridBoard = ({roomInfo, droppedDesk, deskInfo, droppedItem, dropDesk}) => {
     const targetRef = useRef();
-    // const [deskList, setDeskList] = useState([]);
+    const [deskList, setDeskList] = useState(deskInfo);
     const [roomHeight, setRoomHeight] = useState(200);
-    const [dropped, setDropped] = useState(false);
 
     useEffect(() =>{
         calculateHeight(roomInfo)
-    }, [roomInfo]);
+    }, [roomInfo, deskInfo]);
 
     const calculateHeight = (roomInfo) => {
         const ratio = roomInfo.room_height/roomInfo.room_width;
@@ -21,16 +20,17 @@ const GridBoard = ({roomInfo, droppedDesk}) => {
     }
 
     const onDeskDrop = (e) => {
-        // if(deskList.length){
-            setDropped(true)  
+        if(deskList.length){
+            console.log(deskList)
+            dropDesk(droppedItem)  
             console.log(e.screenX)
             console.log(e.screenY)
-        // }
+        }
         
     }
 
     const deskMapper = () => {
-        return <Desk key={droppedDesk.id} id={droppedDesk.id} />
+        return deskList.map( desk => <Desk key={droppedDesk.id} id={droppedDesk.id} />)
     }
 
     return(
@@ -42,7 +42,8 @@ const GridBoard = ({roomInfo, droppedDesk}) => {
                 className="grid-board" 
                 onDragOver={e => e.preventDefault()}
                 onDrop={onDeskDrop}>
-                    {dropped ? <Desk key={droppedDesk.id} id={droppedDesk.id}  /> : null}
+                    {deskMapper()}
+
             </div>
         </Col>
     )
@@ -52,7 +53,15 @@ const mapStateToProps = (store) => {
     return {
         roomInfo: store.roomInfo,
         droppedDesk: store.dragNdrop,
+        deskInfo: store.deskInfo,
+        droppedItem: store.droppedItem
     }
-  }
+}
 
-export default connect(mapStateToProps, null)(GridBoard)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dropDesk: (desk) => dropDesk(desk, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GridBoard)
