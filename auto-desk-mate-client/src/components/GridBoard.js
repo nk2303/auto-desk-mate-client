@@ -5,21 +5,21 @@ import './InteractiveArea.css';
 import Desk from './Desk';
 import {dropDesk} from './redux/actions/dragNdropAction';
 
-const GridBoard = ({roomInfo, droppedDesk, deskInfo, droppedItem, dropDesk}) => {
+const GridBoard = ({roomInfo, droppedDesk, gridDeskList, droppedItem, dropDesk}) => {
     const targetRef = useRef();
-    const [deskList, setDeskList] = useState(deskInfo);
+    const [deskList, setDeskList] = useState(gridDeskList);
     const [roomHeight, setRoomHeight] = useState(200);
 
     useEffect(() =>{
         calculateHeight(roomInfo)
-    }, [roomInfo, deskInfo]);
+    }, [roomInfo, gridDeskList]);
 
     const calculateHeight = (roomInfo) => {
         const ratio = roomInfo.room_height/roomInfo.room_width;
         setRoomHeight(targetRef.current.offsetWidth*ratio)
     }
 
-    const onDeskDrop = (e) => {
+    const handleDeskDrop = (e) => {
         if(deskList.length){
             console.log(deskList)
             dropDesk(droppedItem)  
@@ -30,7 +30,7 @@ const GridBoard = ({roomInfo, droppedDesk, deskInfo, droppedItem, dropDesk}) => 
     }
 
     const deskMapper = () => {
-        return deskList.map( desk => <Desk key={droppedDesk.id} id={droppedDesk.id} />)
+        return gridDeskList.map( desk => <Desk key={droppedDesk.id} id={droppedDesk.id} />)
     }
 
     return(
@@ -41,9 +41,8 @@ const GridBoard = ({roomInfo, droppedDesk, deskInfo, droppedItem, dropDesk}) => 
                 style={{height: roomHeight}} 
                 className="grid-board" 
                 onDragOver={e => e.preventDefault()}
-                onDrop={onDeskDrop}>
-                    {deskMapper()}
-
+                onDrop={handleDeskDrop}>
+                    {gridDeskList.map( desk => <Desk key={droppedDesk.id} id={droppedDesk.id} />)}
             </div>
         </Col>
     )
@@ -53,14 +52,14 @@ const mapStateToProps = (store) => {
     return {
         roomInfo: store.roomInfo,
         droppedDesk: store.dragNdrop,
-        deskInfo: store.deskInfo,
+        gridDeskList: store.gridDeskList,
         droppedItem: store.droppedItem
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        dropDesk: (desk) => dropDesk(desk, dispatch)
+        dropDesk: desk => dropDesk(desk, dispatch)
     }
 }
 

@@ -90,7 +90,7 @@ const UserInputForm = ({getRoomInput, getDeskInput}) =>{
 const mapDispatchToProps = (dispatch) => {
     return {
         getRoomInput: (room_width, room_height) => getRoomInput(room_width, room_height, dispatch),
-        getDeskInput: (total_desks) => getDeskInput(total_desks, dispatch)
+        getDeskInput: total_desks => getDeskInput(total_desks, dispatch)
     }
 }
 
