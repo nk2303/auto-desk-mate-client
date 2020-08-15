@@ -5,9 +5,18 @@ export const deskInfoReducer = (state = DESK_BOARD_INITIAL_STATE, action) => {
         case 'GET_DESK_INPUT':
             return action.payload;
         case 'ON_GRID_BOARD_DROP':
-            return state.filter(desk => desk.id !== action.payload.id);
+            if (state.find( desk => desk.id === action.payload.id)) {
+                return state.filter(desk => desk.id !== action.payload.id)
+            } else {
+                return state
+            }
         case 'ON_DESK_BOARD_DROP':
-            return [...state, action.payload];
+            if (state.find( desk => desk.id === action.payload.id)) {
+                return state
+            } else {
+                return [...state, action.payload];
+            }
+            
         
         default:
             return state;

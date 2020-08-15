@@ -7,7 +7,6 @@ import {dropDeskOnGrid} from './redux/actions/dragNdropAction';
 
 const GridBoard = ({roomInfo, gridDeskList, droppedItem, dropDeskOnGrid}) => {
     const targetRef = useRef();
-    const [deskList, setDeskList] = useState(gridDeskList);
     const [roomHeight, setRoomHeight] = useState(200);
 
     useEffect(() =>{
