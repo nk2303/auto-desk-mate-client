@@ -6,7 +6,6 @@ import { startDeskDrag } from './redux/actions/dragNdropAction';
 const Desk = ({deskInfo, startDeskDrag}) => {
 
     const onStartDeskDrag = () => {
-        console.log(deskInfo);
         startDeskDrag(deskInfo);
     }
     return(

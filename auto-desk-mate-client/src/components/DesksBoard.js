@@ -10,7 +10,7 @@ const DesksBoard = ({boardDeskList}) => {
     // const [deskList, setdeskList] = useState(deskList);
 
     useEffect(() =>{
-        // renderDesks(parseInt(deskList.total_desks))
+        
     }, [boardDeskList]);
 
 

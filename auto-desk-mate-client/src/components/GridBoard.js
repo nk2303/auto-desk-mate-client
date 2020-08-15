@@ -5,14 +5,14 @@ import './InteractiveArea.css';
 import Desk from './Desk';
 import {dropDesk} from './redux/actions/dragNdropAction';
 
-const GridBoard = ({roomInfo, droppedDesk, gridDeskList, droppedItem, dropDesk}) => {
+const GridBoard = ({roomInfo, gridDeskList, droppedItem, dropDesk}) => {
     const targetRef = useRef();
     const [deskList, setDeskList] = useState(gridDeskList);
     const [roomHeight, setRoomHeight] = useState(200);
 
     useEffect(() =>{
         calculateHeight(roomInfo)
-    }, [roomInfo, gridDeskList]);
+    }, [roomInfo]);
 
     const calculateHeight = (roomInfo) => {
         const ratio = roomInfo.room_height/roomInfo.room_width;
@@ -20,17 +20,9 @@ const GridBoard = ({roomInfo, droppedDesk, gridDeskList, droppedItem, dropDesk})
     }
 
     const handleDeskDrop = (e) => {
-        if(deskList.length){
-            console.log(deskList)
             dropDesk(droppedItem)  
             console.log(e.screenX)
             console.log(e.screenY)
-        }
-        
-    }
-
-    const deskMapper = () => {
-        return gridDeskList.map( desk => <Desk key={droppedDesk.id} id={droppedDesk.id} />)
     }
 
     return(
@@ -42,7 +34,7 @@ const GridBoard = ({roomInfo, droppedDesk, gridDeskList, droppedItem, dropDesk})
                 className="grid-board" 
                 onDragOver={e => e.preventDefault()}
                 onDrop={handleDeskDrop}>
-                    {gridDeskList.map( desk => <Desk key={droppedDesk.id} id={droppedDesk.id} />)}
+                    {gridDeskList.map( desk => <Desk key={desk.id} id={desk.id} />)}
             </div>
         </Col>
     )
@@ -51,7 +43,6 @@ const GridBoard = ({roomInfo, droppedDesk, gridDeskList, droppedItem, dropDesk})
 const mapStateToProps = (store) => {
     return {
         roomInfo: store.roomInfo,
-        droppedDesk: store.dragNdrop,
         gridDeskList: store.gridDeskList,
         droppedItem: store.droppedItem
     }
