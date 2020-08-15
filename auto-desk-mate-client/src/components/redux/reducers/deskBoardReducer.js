@@ -4,8 +4,10 @@ export const deskInfoReducer = (state = DESK_BOARD_INITIAL_STATE, action) => {
     switch (action.type) {
         case 'GET_DESK_INPUT':
             return action.payload;
-        case 'ON_DESK_DROP':
+        case 'ON_GRID_BOARD_DROP':
             return state.filter(desk => desk.id !== action.payload.id);
+        case 'ON_DESK_BOARD_DROP':
+            return [...state, action.payload];
         
         default:
             return state;

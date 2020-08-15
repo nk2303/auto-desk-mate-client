@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import Col from 'react-bootstrap/Col';
 import './InteractiveArea.css';
 import Desk from './Desk';
-import {dropDesk} from './redux/actions/dragNdropAction';
+import {dropDeskOnGrid} from './redux/actions/dragNdropAction';
 
-const GridBoard = ({roomInfo, gridDeskList, droppedItem, dropDesk}) => {
+const GridBoard = ({roomInfo, gridDeskList, droppedItem, dropDeskOnGrid}) => {
     const targetRef = useRef();
     const [deskList, setDeskList] = useState(gridDeskList);
     const [roomHeight, setRoomHeight] = useState(200);
@@ -20,9 +20,9 @@ const GridBoard = ({roomInfo, gridDeskList, droppedItem, dropDesk}) => {
     }
 
     const handleDeskDrop = (e) => {
-            dropDesk(droppedItem)  
-            console.log(e.screenX)
-            console.log(e.screenY)
+        dropDeskOnGrid(droppedItem);  
+        console.log(e.screenX);
+        console.log(e.screenY);
     }
 
     return(
@@ -34,7 +34,7 @@ const GridBoard = ({roomInfo, gridDeskList, droppedItem, dropDesk}) => {
                 className="grid-board" 
                 onDragOver={e => e.preventDefault()}
                 onDrop={handleDeskDrop}>
-                    {gridDeskList.map( desk => <Desk key={desk.id} id={desk.id} />)}
+                    {gridDeskList.map( desk => <Desk key={desk.id} deskInfo={desk} />)}
             </div>
         </Col>
     )
@@ -50,7 +50,7 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        dropDesk: desk => dropDesk(desk, dispatch)
+        dropDeskOnGrid: desk => dropDeskOnGrid(desk, dispatch)
     }
 }
 

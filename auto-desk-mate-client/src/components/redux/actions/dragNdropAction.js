@@ -6,10 +6,18 @@ export const startDeskDrag = (desk, dispatch) => {
     })
 }
 
-export const dropDesk = (desk, dispatch) => {
+export const dropDeskOnDB = (desk, dispatch) => {
+    const newDesk = {desk}
+    dispatch ({
+        type: "ON_DESK_BOARD_DROP",
+        payload: newDesk.desk
+    })
+}
+
+export const dropDeskOnGrid = (desk, dispatch) => {
     const droppedDesk = {desk}
     dispatch ({
-        type: "ON_DESK_DROP",
+        type: "ON_GRID_BOARD_DROP",
         payload: droppedDesk.desk
     })
 }

@@ -5,14 +5,14 @@ import { startDeskDrag } from './redux/actions/dragNdropAction';
 
 const Desk = ({deskInfo, startDeskDrag}) => {
 
-    const onStartDeskDrag = () => {
+    const handleDragStart = () => {
         startDeskDrag(deskInfo);
     }
     return(
         <div 
             draggable 
             className = "desk" 
-            onDragStart={onStartDeskDrag}>
+            onDragStart={handleDragStart}>
             DESK
         </div>
     )
